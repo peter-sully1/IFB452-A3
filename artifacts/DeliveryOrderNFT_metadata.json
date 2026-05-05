@@ -1,0 +1,200 @@
+{
+	"compiler": {
+		"version": "0.8.30+commit.73712a01"
+	},
+	"language": "Solidity",
+	"output": {
+		"abi": [
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_roleManager",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "_auditLog",
+						"type": "address"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "constructor"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "note",
+						"type": "string"
+					}
+				],
+				"name": "ExceptionReported",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "OrderCompleted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"indexed": true,
+						"internalType": "address",
+						"name": "restaurant",
+						"type": "address"
+					}
+				],
+				"name": "OrderMinted",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "enum DeliveryOrderNFT.OrderStatus",
+						"name": "newStatus",
+						"type": "uint8"
+					}
+				],
+				"name": "OrderStatusChanged",
+				"type": "event"
+			},
+			{
+				"inputs": [],
+				"name": "admin",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "auditLog",
+				"outputs": [
+					{
+						"internalType": "contract AuditLog",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "handoverManager",
+				"outputs": [
+					{
+						"internalType": "address",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "roleManager",
+				"outputs": [
+					{
+						"internalType": "contract RoleManager",
+						"name": "",
+						"type": "address"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			}
+		],
+		"devdoc": {
+			"kind": "dev",
+			"methods": {},
+			"version": 1
+		},
+		"userdoc": {
+			"kind": "user",
+			"methods": {},
+			"version": 1
+		}
+	},
+	"settings": {
+		"compilationTarget": {
+			"DeliveryOrderNFT.sol": "DeliveryOrderNFT"
+		},
+		"evmVersion": "prague",
+		"libraries": {},
+		"metadata": {
+			"bytecodeHash": "ipfs"
+		},
+		"optimizer": {
+			"enabled": false,
+			"runs": 200
+		},
+		"remappings": []
+	},
+	"sources": {
+		"AuditLog.sol": {
+			"keccak256": "0xb3b143a3f68cbd314bab0c3f5fc42a32f81b7fe41534be84c64677d789dd779f",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://45828b08d4b63425f64d24687a841e11f20fbc6473c78ca320bbaacfd69c16b9",
+				"dweb:/ipfs/QmYxGTQtF1KtXPcbxVKNeShRyZ6vSpURhU8yDYeVFYGW2b"
+			]
+		},
+		"DeliveryOrderNFT.sol": {
+			"keccak256": "0x55a065666f75fddb24744cb3f5ff608fba46d3ac34009bc82bfe8b266ba8af53",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://38c1393126bfe89b719acec72ca436cb23a975bdd4e07eab1060503672ff1e40",
+				"dweb:/ipfs/QmZHLQWswnBh2iYmLXypXTqBB656Pgt3mLmMvAPoTsA7dw"
+			]
+		},
+		"RoleManager.sol": {
+			"keccak256": "0xf04a2e3c6152e427aadf0ad0f15aa549182faaebe53eab6f60a59993bfc156a7",
+			"license": "MIT",
+			"urls": [
+				"bzz-raw://3db589df1a0c3aa7f58986cc1c0158b2555d2607b4dcc1ba894b90ceaf7eb95c",
+				"dweb:/ipfs/QmR2xLBogseDkKpjGAfrkL2AKzvCRudRPp5QAnHgDS8AHR"
+			]
+		}
+	},
+	"version": 1
+}

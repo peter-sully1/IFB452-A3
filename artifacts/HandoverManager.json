@@ -1,0 +1,140 @@
+{
+	"deploy": {
+		"VM:-": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"main:1": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"ropsten:3": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"rinkeby:4": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"kovan:42": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"goerli:5": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		},
+		"Custom": {
+			"linkReferences": {},
+			"autoDeployLib": true
+		}
+	},
+	"data": {
+		"bytecode": {
+			"functionDebugData": {},
+			"generatedSources": [],
+			"linkReferences": {},
+			"object": "6080604052348015600e575f5ffd5b5060ba80601a5f395ff3fe6080604052348015600e575f5ffd5b5060043610604e575f3560e01c8063155364a31460525780637d94ad9814605a578063bd1f8043146062578063d2c1801214606a578063e6eadadf146072575b5f5ffd5b6058607a565b005b6060607c565b005b6068607e565b005b60706080565b005b60786082565b005b565b565b565b565b56fea2646970667358221220b7b90a73aaffed95fcf3e00860c8830b1c4f78c5be6a0b420e36b728dadc1bec64736f6c634300081e0033",
+			"opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH1 0xE JUMPI PUSH0 PUSH0 REVERT JUMPDEST POP PUSH1 0xBA DUP1 PUSH1 0x1A PUSH0 CODECOPY PUSH0 RETURN INVALID PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH1 0xE JUMPI PUSH0 PUSH0 REVERT JUMPDEST POP PUSH1 0x4 CALLDATASIZE LT PUSH1 0x4E JUMPI PUSH0 CALLDATALOAD PUSH1 0xE0 SHR DUP1 PUSH4 0x155364A3 EQ PUSH1 0x52 JUMPI DUP1 PUSH4 0x7D94AD98 EQ PUSH1 0x5A JUMPI DUP1 PUSH4 0xBD1F8043 EQ PUSH1 0x62 JUMPI DUP1 PUSH4 0xD2C18012 EQ PUSH1 0x6A JUMPI DUP1 PUSH4 0xE6EADADF EQ PUSH1 0x72 JUMPI JUMPDEST PUSH0 PUSH0 REVERT JUMPDEST PUSH1 0x58 PUSH1 0x7A JUMP JUMPDEST STOP JUMPDEST PUSH1 0x60 PUSH1 0x7C JUMP JUMPDEST STOP JUMPDEST PUSH1 0x68 PUSH1 0x7E JUMP JUMPDEST STOP JUMPDEST PUSH1 0x70 PUSH1 0x80 JUMP JUMPDEST STOP JUMPDEST PUSH1 0x78 PUSH1 0x82 JUMP JUMPDEST STOP JUMPDEST JUMP JUMPDEST JUMP JUMPDEST JUMP JUMPDEST JUMP JUMPDEST JUMP INVALID LOG2 PUSH5 0x6970667358 0x22 SLT KECCAK256 0xB7 0xB9 EXP PUSH20 0xAAFFED95FCF3E00860C8830B1C4F78C5BE6A0B42 0xE CALLDATASIZE 0xB7 0x28 0xDA 0xDC SHL EOFCREATE 0x64 PUSH20 0x6F6C634300081E00330000000000000000000000 ",
+			"sourceMap": "180:535:0:-:0;;;;;;;;;;;;;;;;;;;"
+		},
+		"deployedBytecode": {
+			"functionDebugData": {
+				"@assignPacker_5": {
+					"entryPoint": 130,
+					"id": 5,
+					"parameterSlots": 0,
+					"returnSlots": 0
+				},
+				"@confirmReceipt_17": {
+					"entryPoint": 124,
+					"id": 17,
+					"parameterSlots": 0,
+					"returnSlots": 0
+				},
+				"@handoverToDriver_9": {
+					"entryPoint": 128,
+					"id": 9,
+					"parameterSlots": 0,
+					"returnSlots": 0
+				},
+				"@handoverToReceiver_13": {
+					"entryPoint": 122,
+					"id": 13,
+					"parameterSlots": 0,
+					"returnSlots": 0
+				},
+				"@reportException_21": {
+					"entryPoint": 126,
+					"id": 21,
+					"parameterSlots": 0,
+					"returnSlots": 0
+				}
+			},
+			"generatedSources": [],
+			"immutableReferences": {},
+			"linkReferences": {},
+			"object": "6080604052348015600e575f5ffd5b5060043610604e575f3560e01c8063155364a31460525780637d94ad9814605a578063bd1f8043146062578063d2c1801214606a578063e6eadadf146072575b5f5ffd5b6058607a565b005b6060607c565b005b6068607e565b005b60706080565b005b60786082565b005b565b565b565b565b56fea2646970667358221220b7b90a73aaffed95fcf3e00860c8830b1c4f78c5be6a0b420e36b728dadc1bec64736f6c634300081e0033",
+			"opcodes": "PUSH1 0x80 PUSH1 0x40 MSTORE CALLVALUE DUP1 ISZERO PUSH1 0xE JUMPI PUSH0 PUSH0 REVERT JUMPDEST POP PUSH1 0x4 CALLDATASIZE LT PUSH1 0x4E JUMPI PUSH0 CALLDATALOAD PUSH1 0xE0 SHR DUP1 PUSH4 0x155364A3 EQ PUSH1 0x52 JUMPI DUP1 PUSH4 0x7D94AD98 EQ PUSH1 0x5A JUMPI DUP1 PUSH4 0xBD1F8043 EQ PUSH1 0x62 JUMPI DUP1 PUSH4 0xD2C18012 EQ PUSH1 0x6A JUMPI DUP1 PUSH4 0xE6EADADF EQ PUSH1 0x72 JUMPI JUMPDEST PUSH0 PUSH0 REVERT JUMPDEST PUSH1 0x58 PUSH1 0x7A JUMP JUMPDEST STOP JUMPDEST PUSH1 0x60 PUSH1 0x7C JUMP JUMPDEST STOP JUMPDEST PUSH1 0x68 PUSH1 0x7E JUMP JUMPDEST STOP JUMPDEST PUSH1 0x70 PUSH1 0x80 JUMP JUMPDEST STOP JUMPDEST PUSH1 0x78 PUSH1 0x82 JUMP JUMPDEST STOP JUMPDEST JUMP JUMPDEST JUMP JUMPDEST JUMP JUMPDEST JUMP JUMPDEST JUMP INVALID LOG2 PUSH5 0x6970667358 0x22 SLT KECCAK256 0xB7 0xB9 EXP PUSH20 0xAAFFED95FCF3E00860C8830B1C4F78C5BE6A0B42 0xE CALLDATASIZE 0xB7 0x28 0xDA 0xDC SHL EOFCREATE 0x64 PUSH20 0x6F6C634300081E00330000000000000000000000 ",
+			"sourceMap": "180:535:0:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;458:39;;;:::i;:::-;;548:35;;;:::i;:::-;;664:36;;;:::i;:::-;;365:37;;;:::i;:::-;;278:33;;;:::i;:::-;;458:39;:::o;548:35::-;:::o;664:36::-;:::o;365:37::-;:::o;278:33::-;:::o"
+		},
+		"gasEstimates": {
+			"creation": {
+				"codeDepositCost": "37200",
+				"executionCost": "85",
+				"totalCost": "37285"
+			},
+			"external": {
+				"assignPacker()": "209",
+				"confirmReceipt()": "143",
+				"handoverToDriver()": "187",
+				"handoverToReceiver()": "121",
+				"reportException()": "165"
+			}
+		},
+		"methodIdentifiers": {
+			"assignPacker()": "e6eadadf",
+			"confirmReceipt()": "7d94ad98",
+			"handoverToDriver()": "d2c18012",
+			"handoverToReceiver()": "155364a3",
+			"reportException()": "bd1f8043"
+		}
+	},
+	"abi": [
+		{
+			"inputs": [],
+			"name": "assignPacker",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "confirmReceipt",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "handoverToDriver",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "handoverToReceiver",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		},
+		{
+			"inputs": [],
+			"name": "reportException",
+			"outputs": [],
+			"stateMutability": "nonpayable",
+			"type": "function"
+		}
+	]
+}
