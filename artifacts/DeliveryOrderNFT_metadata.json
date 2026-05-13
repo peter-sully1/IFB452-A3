@@ -14,7 +14,7 @@
 					},
 					{
 						"internalType": "address",
-						"name": "_auditLog",
+						"name": "",
 						"type": "address"
 					}
 				],
@@ -105,13 +105,148 @@
 				"type": "function"
 			},
 			{
-				"inputs": [],
-				"name": "auditLog",
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "packerName",
+						"type": "string"
+					}
+				],
+				"name": "assignPacker",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "completeOrder",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "getOrder",
 				"outputs": [
 					{
-						"internalType": "contract AuditLog",
+						"components": [
+							{
+								"internalType": "uint256",
+								"name": "tokenId",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "totalPriceWei",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "netWeightGrams",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "packedAt",
+								"type": "uint256"
+							},
+							{
+								"internalType": "uint256",
+								"name": "driverPickedUpAt",
+								"type": "uint256"
+							},
+							{
+								"internalType": "address",
+								"name": "restaurant",
+								"type": "address"
+							},
+							{
+								"internalType": "address",
+								"name": "currentHolder",
+								"type": "address"
+							},
+							{
+								"internalType": "enum DeliveryOrderNFT.OrderStatus",
+								"name": "status",
+								"type": "uint8"
+							},
+							{
+								"components": [
+									{
+										"internalType": "string",
+										"name": "name",
+										"type": "string"
+									},
+									{
+										"internalType": "uint256",
+										"name": "quantity",
+										"type": "uint256"
+									}
+								],
+								"internalType": "struct DeliveryOrderNFT.OrderItem[]",
+								"name": "items",
+								"type": "tuple[]"
+							},
+							{
+								"internalType": "string",
+								"name": "packerName",
+								"type": "string"
+							},
+							{
+								"internalType": "string",
+								"name": "driverName",
+								"type": "string"
+							},
+							{
+								"internalType": "bool",
+								"name": "hasException",
+								"type": "bool"
+							},
+							{
+								"internalType": "string",
+								"name": "exceptionNote",
+								"type": "string"
+							}
+						],
+						"internalType": "struct DeliveryOrderNFT.Order",
 						"name": "",
-						"type": "address"
+						"type": "tuple"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "getOrderStatus",
+				"outputs": [
+					{
+						"internalType": "enum DeliveryOrderNFT.OrderStatus",
+						"name": "",
+						"type": "uint8"
 					}
 				],
 				"stateMutability": "view",
@@ -131,6 +266,71 @@
 				"type": "function"
 			},
 			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"name": "markDelivered",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string[]",
+						"name": "itemNames",
+						"type": "string[]"
+					},
+					{
+						"internalType": "uint256[]",
+						"name": "itemQuantities",
+						"type": "uint256[]"
+					},
+					{
+						"internalType": "uint256",
+						"name": "totalPriceWei",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "netWeightGrams",
+						"type": "uint256"
+					}
+				],
+				"name": "placeOrder",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "note",
+						"type": "string"
+					}
+				],
+				"name": "reportException",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
 				"inputs": [],
 				"name": "roleManager",
 				"outputs": [
@@ -141,6 +341,68 @@
 					}
 				],
 				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "driverName",
+						"type": "string"
+					}
+				],
+				"name": "setDriverName",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "address",
+						"name": "_handoverManager",
+						"type": "address"
+					}
+				],
+				"name": "setHandoverManager",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [],
+				"name": "totalOrders",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "tokenId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "newHolder",
+						"type": "address"
+					}
+				],
+				"name": "transferCustody",
+				"outputs": [],
+				"stateMutability": "nonpayable",
 				"type": "function"
 			}
 		],
@@ -171,20 +433,12 @@
 		"remappings": []
 	},
 	"sources": {
-		"AuditLog.sol": {
-			"keccak256": "0xb3b143a3f68cbd314bab0c3f5fc42a32f81b7fe41534be84c64677d789dd779f",
-			"license": "MIT",
-			"urls": [
-				"bzz-raw://45828b08d4b63425f64d24687a841e11f20fbc6473c78ca320bbaacfd69c16b9",
-				"dweb:/ipfs/QmYxGTQtF1KtXPcbxVKNeShRyZ6vSpURhU8yDYeVFYGW2b"
-			]
-		},
 		"DeliveryOrderNFT.sol": {
-			"keccak256": "0x55a065666f75fddb24744cb3f5ff608fba46d3ac34009bc82bfe8b266ba8af53",
+			"keccak256": "0xdbc2a30db9429b4abcf93d98d87fae3cec8faf3792021ed3dd48b17f2d06dfd3",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://38c1393126bfe89b719acec72ca436cb23a975bdd4e07eab1060503672ff1e40",
-				"dweb:/ipfs/QmZHLQWswnBh2iYmLXypXTqBB656Pgt3mLmMvAPoTsA7dw"
+				"bzz-raw://0e36d7665d7b2448cacb1a06d5e234152362f30ff65e9dc06969039631cb3a92",
+				"dweb:/ipfs/QmeJkR7SJ74VD6tZAzJ5GKV2hbpRUQbVYjqgbA1bdow8o5"
 			]
 		},
 		"RoleManager.sol": {
