@@ -175,11 +175,11 @@
 	},
 	"sources": {
 		"RoleManager.sol": {
-			"keccak256": "0xf04a2e3c6152e427aadf0ad0f15aa549182faaebe53eab6f60a59993bfc156a7",
+			"keccak256": "0xefff82003ec2cbdc8ccc7b9d3affb52e5307d3aac1909ca85a8d4606624dc5c9",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://3db589df1a0c3aa7f58986cc1c0158b2555d2607b4dcc1ba894b90ceaf7eb95c",
-				"dweb:/ipfs/QmR2xLBogseDkKpjGAfrkL2AKzvCRudRPp5QAnHgDS8AHR"
+				"bzz-raw://fefcb94803f2b1c7b7a16a833ce961acb686ae79641fb9062ca9253b0b14ccea",
+				"dweb:/ipfs/QmbPLDVc9HwDS3ksepbh9tLj3gyVPW74YWkzeMVEdrHcSZ"
 			]
 		}
 	},

@@ -4,6 +4,7 @@ pragma solidity ^0.8.20;
 // Registers stakeholder roles and verifies them for other contracts.
 contract RoleManager {
 
+    // Stored as 0-5
     enum Role {
         NONE,
         RESTAURANT,

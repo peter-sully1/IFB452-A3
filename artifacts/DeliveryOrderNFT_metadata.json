@@ -11,11 +11,6 @@
 						"internalType": "address",
 						"name": "_roleManager",
 						"type": "address"
-					},
-					{
-						"internalType": "address",
-						"name": "",
-						"type": "address"
 					}
 				],
 				"stateMutability": "nonpayable",
@@ -27,17 +22,17 @@
 					{
 						"indexed": true,
 						"internalType": "uint256",
-						"name": "tokenId",
+						"name": "orderId",
 						"type": "uint256"
 					},
 					{
 						"indexed": false,
 						"internalType": "string",
-						"name": "note",
+						"name": "driverName",
 						"type": "string"
 					}
 				],
-				"name": "ExceptionReported",
+				"name": "DriverAssigned",
 				"type": "event"
 			},
 			{
@@ -46,20 +41,7 @@
 					{
 						"indexed": true,
 						"internalType": "uint256",
-						"name": "tokenId",
-						"type": "uint256"
-					}
-				],
-				"name": "OrderCompleted",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": true,
-						"internalType": "uint256",
-						"name": "tokenId",
+						"name": "orderId",
 						"type": "uint256"
 					},
 					{
@@ -67,9 +49,15 @@
 						"internalType": "address",
 						"name": "restaurant",
 						"type": "address"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "itemDescription",
+						"type": "string"
 					}
 				],
-				"name": "OrderMinted",
+				"name": "OrderCreated",
 				"type": "event"
 			},
 			{
@@ -78,7 +66,26 @@
 					{
 						"indexed": true,
 						"internalType": "uint256",
-						"name": "tokenId",
+						"name": "orderId",
+						"type": "uint256"
+					},
+					{
+						"indexed": false,
+						"internalType": "string",
+						"name": "packerName",
+						"type": "string"
+					}
+				],
+				"name": "PackerAssigned",
+				"type": "event"
+			},
+			{
+				"anonymous": false,
+				"inputs": [
+					{
+						"indexed": true,
+						"internalType": "uint256",
+						"name": "orderId",
 						"type": "uint256"
 					},
 					{
@@ -88,7 +95,7 @@
 						"type": "uint8"
 					}
 				],
-				"name": "OrderStatusChanged",
+				"name": "StatusChanged",
 				"type": "event"
 			},
 			{
@@ -108,7 +115,30 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "tokenId",
+						"name": "orderId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "string",
+						"name": "driverName",
+						"type": "string"
+					},
+					{
+						"internalType": "address",
+						"name": "driverAddr",
+						"type": "address"
+					}
+				],
+				"name": "assignDriver",
+				"outputs": [],
+				"stateMutability": "nonpayable",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "uint256",
+						"name": "orderId",
 						"type": "uint256"
 					},
 					{
@@ -126,20 +156,7 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "tokenId",
-						"type": "uint256"
-					}
-				],
-				"name": "completeOrder",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "tokenId",
+						"name": "orderId",
 						"type": "uint256"
 					}
 				],
@@ -149,27 +166,7 @@
 						"components": [
 							{
 								"internalType": "uint256",
-								"name": "tokenId",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "totalPriceWei",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "netWeightGrams",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "packedAt",
-								"type": "uint256"
-							},
-							{
-								"internalType": "uint256",
-								"name": "driverPickedUpAt",
+								"name": "orderId",
 								"type": "uint256"
 							},
 							{
@@ -183,26 +180,9 @@
 								"type": "address"
 							},
 							{
-								"internalType": "enum DeliveryOrderNFT.OrderStatus",
-								"name": "status",
-								"type": "uint8"
-							},
-							{
-								"components": [
-									{
-										"internalType": "string",
-										"name": "name",
-										"type": "string"
-									},
-									{
-										"internalType": "uint256",
-										"name": "quantity",
-										"type": "uint256"
-									}
-								],
-								"internalType": "struct DeliveryOrderNFT.OrderItem[]",
-								"name": "items",
-								"type": "tuple[]"
+								"internalType": "string",
+								"name": "itemDescription",
+								"type": "string"
 							},
 							{
 								"internalType": "string",
@@ -215,14 +195,14 @@
 								"type": "string"
 							},
 							{
-								"internalType": "bool",
-								"name": "hasException",
-								"type": "bool"
+								"internalType": "uint256",
+								"name": "createdAt",
+								"type": "uint256"
 							},
 							{
-								"internalType": "string",
-								"name": "exceptionNote",
-								"type": "string"
+								"internalType": "enum DeliveryOrderNFT.OrderStatus",
+								"name": "status",
+								"type": "uint8"
 							}
 						],
 						"internalType": "struct DeliveryOrderNFT.Order",
@@ -237,7 +217,7 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "tokenId",
+						"name": "orderId",
 						"type": "uint256"
 					}
 				],
@@ -269,7 +249,7 @@
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "tokenId",
+						"name": "orderId",
 						"type": "uint256"
 					}
 				],
@@ -279,53 +259,81 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "string[]",
-						"name": "itemNames",
-						"type": "string[]"
-					},
-					{
-						"internalType": "uint256[]",
-						"name": "itemQuantities",
-						"type": "uint256[]"
-					},
-					{
-						"internalType": "uint256",
-						"name": "totalPriceWei",
-						"type": "uint256"
-					},
-					{
-						"internalType": "uint256",
-						"name": "netWeightGrams",
-						"type": "uint256"
-					}
-				],
-				"name": "placeOrder",
+				"inputs": [],
+				"name": "orderCount",
 				"outputs": [
 					{
 						"internalType": "uint256",
-						"name": "tokenId",
+						"name": "",
 						"type": "uint256"
 					}
 				],
-				"stateMutability": "nonpayable",
+				"stateMutability": "view",
 				"type": "function"
 			},
 			{
 				"inputs": [
 					{
 						"internalType": "uint256",
-						"name": "tokenId",
+						"name": "",
+						"type": "uint256"
+					}
+				],
+				"name": "orders",
+				"outputs": [
+					{
+						"internalType": "uint256",
+						"name": "orderId",
 						"type": "uint256"
 					},
 					{
+						"internalType": "address",
+						"name": "restaurant",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "currentHolder",
+						"type": "address"
+					},
+					{
 						"internalType": "string",
-						"name": "note",
+						"name": "itemDescription",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "packerName",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "driverName",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "createdAt",
+						"type": "uint256"
+					},
+					{
+						"internalType": "enum DeliveryOrderNFT.OrderStatus",
+						"name": "status",
+						"type": "uint8"
+					}
+				],
+				"stateMutability": "view",
+				"type": "function"
+			},
+			{
+				"inputs": [
+					{
+						"internalType": "string",
+						"name": "itemDescription",
 						"type": "string"
 					}
 				],
-				"name": "reportException",
+				"name": "placeOrder",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -346,61 +354,12 @@
 			{
 				"inputs": [
 					{
-						"internalType": "uint256",
-						"name": "tokenId",
-						"type": "uint256"
-					},
-					{
-						"internalType": "string",
-						"name": "driverName",
-						"type": "string"
-					}
-				],
-				"name": "setDriverName",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
 						"internalType": "address",
 						"name": "_handoverManager",
 						"type": "address"
 					}
 				],
 				"name": "setHandoverManager",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
-				"inputs": [],
-				"name": "totalOrders",
-				"outputs": [
-					{
-						"internalType": "uint256",
-						"name": "",
-						"type": "uint256"
-					}
-				],
-				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "tokenId",
-						"type": "uint256"
-					},
-					{
-						"internalType": "address",
-						"name": "newHolder",
-						"type": "address"
-					}
-				],
-				"name": "transferCustody",
 				"outputs": [],
 				"stateMutability": "nonpayable",
 				"type": "function"
@@ -434,19 +393,19 @@
 	},
 	"sources": {
 		"DeliveryOrderNFT.sol": {
-			"keccak256": "0xdbc2a30db9429b4abcf93d98d87fae3cec8faf3792021ed3dd48b17f2d06dfd3",
+			"keccak256": "0x3e25dd79d057170546dd162a489a6104cb98e61a8f1c6f83852fb6ee5e910921",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://0e36d7665d7b2448cacb1a06d5e234152362f30ff65e9dc06969039631cb3a92",
-				"dweb:/ipfs/QmeJkR7SJ74VD6tZAzJ5GKV2hbpRUQbVYjqgbA1bdow8o5"
+				"bzz-raw://399115180b742b360a9e266aca61500ec0588ca7abeb6835c489ae6cf7b21d20",
+				"dweb:/ipfs/Qmb38wqt6WiTxTT3AwJbDE2mabz8MefswATntLWWs8hkeT"
 			]
 		},
 		"RoleManager.sol": {
-			"keccak256": "0xf04a2e3c6152e427aadf0ad0f15aa549182faaebe53eab6f60a59993bfc156a7",
+			"keccak256": "0xefff82003ec2cbdc8ccc7b9d3affb52e5307d3aac1909ca85a8d4606624dc5c9",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://3db589df1a0c3aa7f58986cc1c0158b2555d2607b4dcc1ba894b90ceaf7eb95c",
-				"dweb:/ipfs/QmR2xLBogseDkKpjGAfrkL2AKzvCRudRPp5QAnHgDS8AHR"
+				"bzz-raw://fefcb94803f2b1c7b7a16a833ce961acb686ae79641fb9062ca9253b0b14ccea",
+				"dweb:/ipfs/QmbPLDVc9HwDS3ksepbh9tLj3gyVPW74YWkzeMVEdrHcSZ"
 			]
 		}
 	},

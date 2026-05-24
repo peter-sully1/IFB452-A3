@@ -4,34 +4,35 @@ pragma solidity ^0.8.20;
 import "./RoleManager.sol";
 import "./DeliveryOrderNFT.sol";
 
-// Custody chain for delivery orders
-// Sequence: RESTAURANT → PACKER → DRIVER → RECEIVER → restaurant completes
+// Manages the handover sequence for delivery orders.
+// Sequence: RESTAURANT places order → SUPERVISOR assigns packer → PACKER hands to DRIVER → DRIVER delivers to RECEIVER
 contract HandoverManager {
 
+    // Records each custody handover with sender, receiver, and timestamp
     struct HandoverRecord {
         address sender;
         address receiver;
         uint256 timestamp;
     }
 
-    RoleManager public roleManager;
+    RoleManager     public roleManager;
     DeliveryOrderNFT public deliveryOrderNFT;
 
-    // orderId => assigned packer address
+    // orderId => address of assigned packer
     mapping(uint256 => address) public assignedPacker;
 
-    // orderId => assigned driver address
+    // orderId => address of assigned driver
     mapping(uint256 => address) public assignedDriver;
 
     // orderId => list of handover records
     mapping(uint256 => HandoverRecord[]) private _handovers;
 
+    // Events
     event PackerAssigned(uint256 indexed orderId, address indexed packer);
     event HandedToDriver(uint256 indexed orderId, address indexed driver);
     event HandedToReceiver(uint256 indexed orderId, address indexed receiver);
-    event ReceiptConfirmed(uint256 indexed orderId, address indexed receiver);
-    event ExceptionFlagged(uint256 indexed orderId, address indexed reporter, string note);
 
+    // Restricts a function to callers holding a specific role
     modifier hasRole(RoleManager.Role required) {
         require(
             roleManager.getRole(msg.sender) == required,
@@ -45,7 +46,7 @@ contract HandoverManager {
         deliveryOrderNFT = DeliveryOrderNFT(_deliveryOrderNFT);
     }
 
-    // Supervisor assigns a packer to a PENDING order
+    // Supervisor assigns a registered packer to a PENDING order
     function assignPacker(uint256 orderId, address packerAddr)
         external hasRole(RoleManager.Role.SUPERVISOR)
     {
@@ -64,30 +65,29 @@ contract HandoverManager {
 
         emit PackerAssigned(orderId, packerAddr);
     }
-    
-    // Packer hands order to Driver
+
+    // Packer hands the order to a registered driver
     function handoverToDriver(uint256 orderId, address driverAddr)
         external hasRole(RoleManager.Role.PACKER)
     {
         require(assignedPacker[orderId] == msg.sender, "HandoverManager: not the assigned packer");
         require(
-            deliveryOrderNFT.getOrderStatus(orderId) == DeliveryOrderNFT.OrderStatus.ASSIGNED,
-            "HandoverManager: order must be ASSIGNED"
+            deliveryOrderNFT.getOrderStatus(orderId) == DeliveryOrderNFT.OrderStatus.IN_TRANSIT,
+            "HandoverManager: order must be IN_TRANSIT"
         );
         roleManager.requireRole(driverAddr, RoleManager.Role.DRIVER);
 
         assignedDriver[orderId] = driverAddr;
 
         string memory driverName = roleManager.names(driverAddr);
-        deliveryOrderNFT.setDriverName(orderId, driverName);
-        deliveryOrderNFT.transferCustody(orderId, driverAddr);
+        deliveryOrderNFT.assignDriver(orderId, driverName, driverAddr);
 
         _recordHandover(orderId, msg.sender, driverAddr);
 
         emit HandedToDriver(orderId, driverAddr);
     }
 
-    // Driver hands order to Receiver
+    // Driver delivers the order to a registered receiver
     function handoverToReceiver(uint256 orderId, address receiverAddr)
         external hasRole(RoleManager.Role.DRIVER)
     {
@@ -98,54 +98,21 @@ contract HandoverManager {
         );
         roleManager.requireRole(receiverAddr, RoleManager.Role.RECEIVER);
 
-        deliveryOrderNFT.transferCustody(orderId, receiverAddr);
+        deliveryOrderNFT.markDelivered(orderId);
 
         _recordHandover(orderId, msg.sender, receiverAddr);
 
         emit HandedToReceiver(orderId, receiverAddr);
     }
 
-    // Receiver confirms receipt
-    function confirmReceipt(uint256 orderId)
-        external hasRole(RoleManager.Role.RECEIVER)
+    // Returns the full handover history for an order
+    function getHandovers(uint256 orderId)
+        external view returns (HandoverRecord[] memory)
     {
-        require(
-            deliveryOrderNFT.getOrderStatus(orderId) == DeliveryOrderNFT.OrderStatus.IN_TRANSIT,
-            "HandoverManager: order must be IN_TRANSIT"
-        );
-
-        DeliveryOrderNFT.Order memory order = deliveryOrderNFT.getOrder(orderId);
-        require(order.currentHolder == msg.sender, "HandoverManager: not the current holder");
-
-        deliveryOrderNFT.markDelivered(orderId);
-
-        _recordHandover(orderId, msg.sender, order.restaurant);
-
-        emit ReceiptConfirmed(orderId, msg.sender);
-    }
-    
-    // Exception reporting PACKER, DRIVER, RECEIVER, or RESTAURANT 
-    function reportException(uint256 orderId, string calldata note) external {
-        RoleManager.Role callerRole = roleManager.getRole(msg.sender);
-        require(
-            callerRole == RoleManager.Role.PACKER    ||
-            callerRole == RoleManager.Role.DRIVER     ||
-            callerRole == RoleManager.Role.RECEIVER   ||
-            callerRole == RoleManager.Role.RESTAURANT,
-            "HandoverManager: not authorised"
-        );
-
-        deliveryOrderNFT.reportException(orderId, note);
-
-        emit ExceptionFlagged(orderId, msg.sender, note);
-    }
-
-    // View functions
-    function getHandovers(uint256 orderId) external view returns (HandoverRecord[] memory) {
         return _handovers[orderId];
     }
 
-    // Internal helpers
+    // Internal: appends a handover record to the order's history
     function _recordHandover(uint256 orderId, address sender, address receiver) internal {
         _handovers[orderId].push(HandoverRecord({
             sender:    sender,
@@ -153,5 +120,4 @@ contract HandoverManager {
             timestamp: block.timestamp
         }));
     }
-
 }

@@ -3,180 +3,146 @@ pragma solidity ^0.8.20;
 
 import "./RoleManager.sol";
 
-// Each token represents a unique delivery order
-// Restaurants mint tokens, HandoverManager updates their state
+// Stores and manages delivery orders for the Block Delivery Logistics system.
+// Restaurants create orders; HandoverManager updates their status and details.
 contract DeliveryOrderNFT {
 
+    // Tracks where the order is in the delivery lifecycle
     enum OrderStatus {
         PENDING,
-        ASSIGNED,
         IN_TRANSIT,
-        DELIVERED,
-        COMPLETED
+        DELIVERED
     }
 
-    struct OrderItem {
-        string  name;
-        uint256 quantity;
-    }
-
+    // Represents a single delivery order
     struct Order {
-        uint256 tokenId;
-        uint256 totalPriceWei;
-        uint256 netWeightGrams;
-        uint256 packedAt;
-        uint256 driverPickedUpAt;   
+        uint256 orderId;
         address restaurant;
         address currentHolder;
+        string  itemDescription;
+        string  packerName;
+        string  driverName;
+        uint256 createdAt;
         OrderStatus status;
-        OrderItem[] items;
-        string packerName;
-        string driverName;
-        bool hasException;
-        string exceptionNote;
     }
 
     RoleManager public roleManager;
-    address public handoverManager;
     address public admin;
+    address public handoverManager;
 
-    uint256 private _nextTokenId = 1;
+    // Counter to generate unique order IDs (matches course pattern)
+    uint256 public orderCount;
 
-    mapping(uint256 => Order) private _orders;
+    // orderId => Order
+    mapping(uint256 => Order) public orders;
 
-    event OrderMinted(uint256 indexed tokenId, address indexed restaurant);
-    event OrderStatusChanged(uint256 indexed tokenId, OrderStatus newStatus);
-    event ExceptionReported(uint256 indexed tokenId, string note);
-    event OrderCompleted(uint256 indexed tokenId);
+    // Events
+    event OrderCreated(uint256 indexed orderId, address indexed restaurant, string itemDescription);
+    event StatusChanged(uint256 indexed orderId, OrderStatus newStatus);
+    event PackerAssigned(uint256 indexed orderId, string packerName);
+    event DriverAssigned(uint256 indexed orderId, string driverName);
 
+    // Restricts admin-only functions to the deployer
     modifier onlyAdmin() {
         require(msg.sender == admin, "DeliveryOrderNFT: not admin");
         _;
     }
 
+    // Restricts state-change functions to HandoverManager contract
     modifier onlyHandoverManager() {
         require(msg.sender == handoverManager, "DeliveryOrderNFT: not HandoverManager");
         _;
     }
 
-    modifier tokenExists(uint256 tokenId) {
-        require(_orders[tokenId].restaurant != address(0), "DeliveryOrderNFT: token does not exist");
+    // Reverts if the order does not exist
+    modifier orderExists(uint256 orderId) {
+        require(orderId > 0 && orderId <= orderCount, "DeliveryOrderNFT: order does not exist");
         _;
     }
 
-    modifier notCompleted(uint256 tokenId) {
-        require(_orders[tokenId].status != OrderStatus.COMPLETED, "DeliveryOrderNFT: order is locked");
-        _;
-    }
-
-    constructor(address _roleManager, address) {
+    constructor(address _roleManager) {
         admin = msg.sender;
         roleManager = RoleManager(_roleManager);
     }
 
-    // Link the HandoverManager after deployment.
+    // Called once after HandoverManager is deployed, to link the two contracts
     function setHandoverManager(address _handoverManager) external onlyAdmin {
         handoverManager = _handoverManager;
     }
 
- 
-    // Restaurant: place an order
-    // Mint a new delivery order token.
-    function placeOrder(
-        string[] calldata itemNames,
-        uint256[] calldata itemQuantities,
-        uint256 totalPriceWei,
-        uint256 netWeightGrams
-    ) external returns (uint256 tokenId) {
+    // Restaurant places a new order
+    function placeOrder(string calldata itemDescription) external {
         roleManager.requireRole(msg.sender, RoleManager.Role.RESTAURANT);
-        require(itemNames.length > 0, "DeliveryOrderNFT: no items");
-        require(itemNames.length == itemQuantities.length, "DeliveryOrderNFT: array mismatch");
+        require(bytes(itemDescription).length > 0, "DeliveryOrderNFT: description required");
 
-        tokenId = _nextTokenId++;
+        orderCount++;
 
-        Order storage o  = _orders[tokenId];
-        o.tokenId        = tokenId;
+        Order storage o = orders[orderCount];
+        o.orderId        = orderCount;
         o.restaurant     = msg.sender;
         o.currentHolder  = msg.sender;
+        o.itemDescription = itemDescription;
+        o.createdAt      = block.timestamp;
         o.status         = OrderStatus.PENDING;
-        o.totalPriceWei  = totalPriceWei;
-        o.netWeightGrams = netWeightGrams;
 
-        for (uint256 i = 0; i < itemNames.length; i++) {
-            o.items.push(OrderItem({ name: itemNames[i], quantity: itemQuantities[i] }));
-        }
-
-        emit OrderMinted(tokenId, msg.sender);
+        emit OrderCreated(orderCount, msg.sender, itemDescription);
     }
 
-
-    // HandoverManager-only functions
-    function assignPacker(uint256 tokenId, string calldata packerName)
-        external onlyHandoverManager tokenExists(tokenId) notCompleted(tokenId)
+    // HandoverManager sets the packer name and moves status to IN_TRANSIT
+    function assignPacker(uint256 orderId, string calldata packerName)
+        external onlyHandoverManager orderExists(orderId)
     {
-        _orders[tokenId].packerName = packerName;
-        _orders[tokenId].packedAt   = block.timestamp;
-        _orders[tokenId].status     = OrderStatus.ASSIGNED;
-        emit OrderStatusChanged(tokenId, OrderStatus.ASSIGNED);
+        require(
+            orders[orderId].status == OrderStatus.PENDING,
+            "DeliveryOrderNFT: order must be PENDING"
+        );
+        orders[orderId].packerName = packerName;
+        orders[orderId].status     = OrderStatus.IN_TRANSIT;
+
+        emit PackerAssigned(orderId, packerName);
+        emit StatusChanged(orderId, OrderStatus.IN_TRANSIT);
     }
 
-    function transferCustody(uint256 tokenId, address newHolder)
-        external onlyHandoverManager tokenExists(tokenId) notCompleted(tokenId)
+    // HandoverManager sets the driver name and updates the current holder
+    function assignDriver(uint256 orderId, string calldata driverName, address driverAddr)
+        external onlyHandoverManager orderExists(orderId)
     {
-        _orders[tokenId].currentHolder = newHolder;
-        _orders[tokenId].status        = OrderStatus.IN_TRANSIT;
-        emit OrderStatusChanged(tokenId, OrderStatus.IN_TRANSIT);
+        require(
+            orders[orderId].status == OrderStatus.IN_TRANSIT,
+            "DeliveryOrderNFT: order must be IN_TRANSIT"
+        );
+        orders[orderId].driverName    = driverName;
+        orders[orderId].currentHolder = driverAddr;
+
+        emit DriverAssigned(orderId, driverName);
     }
 
-    function setDriverName(uint256 tokenId, string calldata driverName)
-        external onlyHandoverManager tokenExists(tokenId) notCompleted(tokenId)
+    // HandoverManager marks the order as delivered
+    function markDelivered(uint256 orderId)
+        external onlyHandoverManager orderExists(orderId)
     {
-        _orders[tokenId].driverName       = driverName;
-        _orders[tokenId].driverPickedUpAt = block.timestamp;
+        require(
+            orders[orderId].status == OrderStatus.IN_TRANSIT,
+            "DeliveryOrderNFT: order must be IN_TRANSIT"
+        );
+        orders[orderId].status = OrderStatus.DELIVERED;
+
+        emit StatusChanged(orderId, OrderStatus.DELIVERED);
     }
 
-    function markDelivered(uint256 tokenId)
-        external onlyHandoverManager tokenExists(tokenId) notCompleted(tokenId)
+    // Read order details by ID
+    function getOrder(uint256 orderId)
+        external view orderExists(orderId)
+        returns (Order memory)
     {
-        _orders[tokenId].status = OrderStatus.DELIVERED;
-        emit OrderStatusChanged(tokenId, OrderStatus.DELIVERED);
+        return orders[orderId];
     }
 
-    function reportException(uint256 tokenId, string calldata note)
-        external onlyHandoverManager tokenExists(tokenId) notCompleted(tokenId)
+    // Read just the status of an order
+    function getOrderStatus(uint256 orderId)
+        external view orderExists(orderId)
+        returns (OrderStatus)
     {
-        _orders[tokenId].hasException  = true;
-        _orders[tokenId].exceptionNote = note;
-        emit ExceptionReported(tokenId, note);
+        return orders[orderId].status;
     }
-
-   
-    // Restaurant: complete the order
-    // Lock the order permanently once delivery is confirmed.
-    function completeOrder(uint256 tokenId)
-        external tokenExists(tokenId) notCompleted(tokenId)
-    {
-        Order storage o = _orders[tokenId];
-        require(msg.sender == o.restaurant, "DeliveryOrderNFT: only restaurant can complete");
-        require(o.status == OrderStatus.DELIVERED, "DeliveryOrderNFT: not yet delivered");
-
-        o.status = OrderStatus.COMPLETED;
-
-        emit OrderCompleted(tokenId);
-    }
-
-  
-    // View functions
-    function getOrder(uint256 tokenId) external view tokenExists(tokenId) returns (Order memory) {
-        return _orders[tokenId];
-    }
-
-    function getOrderStatus(uint256 tokenId) external view tokenExists(tokenId) returns (OrderStatus) {
-        return _orders[tokenId].status;
-    }
-
-    function totalOrders() external view returns (uint256) {
-        return _nextTokenId - 1;
-    }
-
 }

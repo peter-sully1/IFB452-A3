@@ -33,31 +33,6 @@
 					{
 						"indexed": true,
 						"internalType": "address",
-						"name": "reporter",
-						"type": "address"
-					},
-					{
-						"indexed": false,
-						"internalType": "string",
-						"name": "note",
-						"type": "string"
-					}
-				],
-				"name": "ExceptionFlagged",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": true,
-						"internalType": "uint256",
-						"name": "orderId",
-						"type": "uint256"
-					},
-					{
-						"indexed": true,
-						"internalType": "address",
 						"name": "driver",
 						"type": "address"
 					}
@@ -101,25 +76,6 @@
 					}
 				],
 				"name": "PackerAssigned",
-				"type": "event"
-			},
-			{
-				"anonymous": false,
-				"inputs": [
-					{
-						"indexed": true,
-						"internalType": "uint256",
-						"name": "orderId",
-						"type": "uint256"
-					},
-					{
-						"indexed": true,
-						"internalType": "address",
-						"name": "receiver",
-						"type": "address"
-					}
-				],
-				"name": "ReceiptConfirmed",
 				"type": "event"
 			},
 			{
@@ -176,19 +132,6 @@
 					}
 				],
 				"stateMutability": "view",
-				"type": "function"
-			},
-			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "orderId",
-						"type": "uint256"
-					}
-				],
-				"name": "confirmReceipt",
-				"outputs": [],
-				"stateMutability": "nonpayable",
 				"type": "function"
 			},
 			{
@@ -277,24 +220,6 @@
 				"type": "function"
 			},
 			{
-				"inputs": [
-					{
-						"internalType": "uint256",
-						"name": "orderId",
-						"type": "uint256"
-					},
-					{
-						"internalType": "string",
-						"name": "note",
-						"type": "string"
-					}
-				],
-				"name": "reportException",
-				"outputs": [],
-				"stateMutability": "nonpayable",
-				"type": "function"
-			},
-			{
 				"inputs": [],
 				"name": "roleManager",
 				"outputs": [
@@ -336,27 +261,27 @@
 	},
 	"sources": {
 		"DeliveryOrderNFT.sol": {
-			"keccak256": "0x4c79db7feac2ced6156595096248d7070c2eadfae425e8911855e2606dac891b",
+			"keccak256": "0x3e25dd79d057170546dd162a489a6104cb98e61a8f1c6f83852fb6ee5e910921",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://f1e030ac3e2847a523e4155096c44139cba45cdc72456294469bcb3b0dd6df9d",
-				"dweb:/ipfs/Qma2ZwANbdwBfiiVfEJio1snzC8Zst3nQRcfS4R2tv4BJy"
+				"bzz-raw://399115180b742b360a9e266aca61500ec0588ca7abeb6835c489ae6cf7b21d20",
+				"dweb:/ipfs/Qmb38wqt6WiTxTT3AwJbDE2mabz8MefswATntLWWs8hkeT"
 			]
 		},
 		"HandoverManager.sol": {
-			"keccak256": "0x012ebf2294c8a76cb64d2aff935f0e053b6f9f08b8456eff215389dd6f12a5ef",
+			"keccak256": "0x4a1f151bf8a4b697cabde9a27c689c91391b01b87442bd95309ba22be5840d90",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://6cdc278d3151b3ec6e7939337834e4dddb76190c5feab9aa784292696a3da082",
-				"dweb:/ipfs/QmXois3ooWquvyzobEwfcc36rarsuUGL7exkb1bCrf2yW3"
+				"bzz-raw://2e9811d2aaab7316831e9c75c26343572092b96a6e61789c2b50cf83fe8ea39a",
+				"dweb:/ipfs/QmezNDDfKvL447gnDsj3DToCFzBWDXEbHpBqgTVxm7actZ"
 			]
 		},
 		"RoleManager.sol": {
-			"keccak256": "0xf04a2e3c6152e427aadf0ad0f15aa549182faaebe53eab6f60a59993bfc156a7",
+			"keccak256": "0xefff82003ec2cbdc8ccc7b9d3affb52e5307d3aac1909ca85a8d4606624dc5c9",
 			"license": "MIT",
 			"urls": [
-				"bzz-raw://3db589df1a0c3aa7f58986cc1c0158b2555d2607b4dcc1ba894b90ceaf7eb95c",
-				"dweb:/ipfs/QmR2xLBogseDkKpjGAfrkL2AKzvCRudRPp5QAnHgDS8AHR"
+				"bzz-raw://fefcb94803f2b1c7b7a16a833ce961acb686ae79641fb9062ca9253b0b14ccea",
+				"dweb:/ipfs/QmbPLDVc9HwDS3ksepbh9tLj3gyVPW74YWkzeMVEdrHcSZ"
 			]
 		}
 	},
