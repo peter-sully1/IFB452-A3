@@ -8,7 +8,7 @@
   <!-- Bootstrap 5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
 
-  <!-- Ethers.js v5 (matches course slides) -->
+  <!-- Ethers.js v5 -->
   <script src="https://cdn.jsdelivr.net/npm/ethers@5.7.2/dist/ethers.umd.min.js"></script>
 
   <style>
@@ -47,11 +47,11 @@
 
   <!-- Status alert -->
   <div class="alert alert-info py-2 mb-4" role="alert" id="statusBar">
-    Connect your wallet to get started.
+    Connect your wallet to get started
   </div>
 
   <!-- Wallet -->
-  <div class="card mb-4 shadow-sm" style=" background:#028090; color:white">
+  <div class="card mb-4 shadow-sm">
     <div class="card-header fw-semibold">Wallet</div>
     <div class="card-body">
       <button class="btn btn-danger" onclick="connectWallet()">Connect MetaMask</button>
@@ -59,8 +59,8 @@
   </div>
 
   <!-- Register Stakeholder -->
-  <div class="card mb-4 shadow-sm" style=" background:#028090; color:white">
-    <div class="card-header fw-semibold">Register Stakeholder <span class="text" style="color:rgb(219, 214, 214)">(Admin)</span></div>
+  <div class="card mb-4 shadow-sm">
+    <div class="card-header fw-semibold">Register Stakeholder <span class="text-muted fw-normal">(Admin)</span></div>
     <div class="card-body">
       <div class="mb-3">
         <label class="form-label">Wallet Address</label>
@@ -82,15 +82,15 @@
           </select>
         </div>
         <div class="col-auto">
-          <button class="btn btn-primary" style="background-color: #1b2a4a" onclick="registerStakeholder()">Register</button>
+          <button class="btn btn-primary" onclick="registerStakeholder()">Register</button>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Place Order -->
-  <div class="card mb-4 shadow-sm" style=" background:#028090; color:white">
-    <div class="card-header fw-semibold">Place Order <span class="text" style="color:rgb(219, 214, 214)">(Restaurant)</span></div>
+  <div class="card mb-4 shadow-sm">
+    <div class="card-header fw-semibold">Place Order <span class="text-muted fw-normal">(Restaurant)</span></div>
     <div class="card-body">
       <div class="row g-2 align-items-end">
         <div class="col">
@@ -98,15 +98,15 @@
           <input type="text" class="form-control" id="order-items" placeholder="e.g. 2x Burger, 1x Fries" />
         </div>
         <div class="col-auto">
-          <button class="btn btn-primary" style="background-color: #1b2a4a" onclick="placeOrder()">Place Order</button>
+          <button class="btn btn-primary" onclick="placeOrder()">Place Order</button>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Assign Packer -->
-  <div class="card mb-4 shadow-sm" style=" background:#028090; color:white">
-    <div class="card-header fw-semibold">Assign Packer <span class="text" style="color:rgb(219, 214, 214)">(Supervisor)</span></div>
+  <div class="card mb-4 shadow-sm">
+    <div class="card-header fw-semibold">Assign Packer <span class="text-muted fw-normal">(Supervisor)</span></div>
     <div class="card-body">
       <div class="mb-3">
         <label class="form-label">Order ID</label>
@@ -118,15 +118,15 @@
           <input type="text" class="form-control" id="assign-packer" placeholder="0x..." />
         </div>
         <div class="col-auto">
-          <button class="btn btn-primary" style="background-color: #1b2a4a" onclick="assignPacker()">Assign Packer</button>
+          <button class="btn btn-primary" onclick="assignPacker()">Assign Packer</button>
         </div>
       </div>
     </div>
   </div>
 
   <!-- Hand to Driver -->
-  <div class="card mb-4 shadow-sm" style=" background:#028090; color:white">
-    <div class="card-header fw-semibold">Hand to Driver <span class="text" style="color:rgb(219, 214, 214)">(Packer)</span></div>
+  <div class="card mb-4 shadow-sm">
+    <div class="card-header fw-semibold">Hand to Driver <span class="text-muted fw-normal">(Packer)</span></div>
     <div class="card-body">
       <div class="mb-3">
         <label class="form-label">Order ID</label>
@@ -138,15 +138,15 @@
           <input type="text" class="form-control" id="driver-addr" placeholder="0x..." />
         </div>
         <div class="col-auto">
-          <button class="btn btn-primary" style="background-color: #1b2a4a" onclick="handoverToDriver()">Hand to Driver</button>
+          <button class="btn btn-primary" onclick="handoverToDriver()">Hand to Driver</button>
         </div>
       </div>
     </div>
   </div>
 
   <!--  Deliver to Receiver  -->
-  <div class="card mb-4 shadow-sm" style=" background:#028090; color:white">
-    <div class="card-header fw-semibold">Deliver to Receiver <span class="text" style="color:rgb(219, 214, 214)">(Driver)</span></div>
+  <div class="card mb-4 shadow-sm">
+    <div class="card-header fw-semibold">Deliver to Receiver <span class="text-muted fw-normal">(Driver)</span></div>
     <div class="card-body">
       <div class="mb-3">
         <label class="form-label">Order ID</label>
@@ -158,14 +158,14 @@
           <input type="text" class="form-control" id="receiver-addr" placeholder="0x..." />
         </div>
         <div class="col-auto">
-          <button class="btn btn-primary" style="background-color: #1b2a4a" onclick="handoverToReceiver()">Mark Delivered</button>
+          <button class="btn btn-primary" onclick="handoverToReceiver()">Mark Delivered</button>
         </div>
       </div>
     </div>
   </div>
 
   <!-- View Order  -->
-  <div class="card mb-4 shadow-sm" style=" background:#028090; color:white">
+  <div class="card mb-4 shadow-sm">
     <div class="card-header fw-semibold">View Order Details</div>
     <div class="card-body">
       <div class="row g-2 align-items-end mb-3">
@@ -197,225 +197,861 @@
 </nav>
 
 <script>
-  // Contract addresses — replace after deployment 
-  const ROLE_MANAGER_ADDRESS       = "0xB0796ba5cdc08eB81C787Ad9BAcdfEEa5e3446BA";
-  const DELIVERY_ORDER_NFT_ADDRESS = "0x37966fD8BbB9C25ba17C2503C538E9a1511C2B6c";
-  const HANDOVER_MANAGER_ADDRESS   = "0x2433a0Ff1e95692dCA39cE72451e9D5036a0Ea4A";
-
+ 
+  // Contract addresses — replace with your deployed addresses from Remix
+  const RoleManagerAddress = "";
+  const DeliveryOrderNFTAddress = "";
+  const HandoverManagerAddress = "";
+ 
   // ABIs 
-  const ROLE_MANAGER_ABI = [
-    "function registerStakeholder(address account, uint8 role, string calldata name) external",
-    "function getRole(address account) external view returns (uint8)",
-    "function names(address) external view returns (string)"
-  ];
-
-  const DELIVERY_ORDER_NFT_ABI = [
-    "function placeOrder(string calldata itemDescription) external",
-    "function getOrder(uint256 orderId) external view returns (tuple(uint256 orderId, address restaurant, address currentHolder, string itemDescription, string packerName, string driverName, uint256 createdAt, uint8 status))",
-    "function getOrderStatus(uint256 orderId) external view returns (uint8)",
-    "function orderCount() external view returns (uint256)"
-  ];
-
-  const HANDOVER_MANAGER_ABI = [
-    "function assignPacker(uint256 orderId, address packerAddr) external",
-    "function handoverToDriver(uint256 orderId, address driverAddr) external",
-    "function handoverToReceiver(uint256 orderId, address receiverAddr) external",
-    "function getHandovers(uint256 orderId) external view returns (tuple(address sender, address receiver, uint256 timestamp)[])"
-  ];
-
-  // State 
-  let provider, signer;
-  let roleManagerContract, deliveryOrderNFTContract, handoverManagerContract;
-
+  const RoleManagerABI = [
+	{
+		"inputs": [],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "enum RoleManager.Role",
+				"name": "role",
+				"type": "uint8"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			}
+		],
+		"name": "RoleGranted",
+		"type": "event"
+	},
+	{
+		"inputs": [],
+		"name": "admin",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			}
+		],
+		"name": "getRole",
+		"outputs": [
+			{
+				"internalType": "enum RoleManager.Role",
+				"name": "",
+				"type": "uint8"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "names",
+		"outputs": [
+			{
+				"internalType": "string",
+				"name": "",
+				"type": "string"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			},
+			{
+				"internalType": "enum RoleManager.Role",
+				"name": "role",
+				"type": "uint8"
+			},
+			{
+				"internalType": "string",
+				"name": "name",
+				"type": "string"
+			}
+		],
+		"name": "registerStakeholder",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "account",
+				"type": "address"
+			},
+			{
+				"internalType": "enum RoleManager.Role",
+				"name": "expected",
+				"type": "uint8"
+			}
+		],
+		"name": "requireRole",
+		"outputs": [],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"name": "roles",
+		"outputs": [
+			{
+				"internalType": "enum RoleManager.Role",
+				"name": "",
+				"type": "uint8"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+];
+ 
+  const DeliveryOrderNFTABI = [
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_roleManager",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "orderId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "driverName",
+				"type": "string"
+			}
+		],
+		"name": "DriverAssigned",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "orderId",
+				"type": "uint256"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "restaurant",
+				"type": "address"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "itemDescription",
+				"type": "string"
+			}
+		],
+		"name": "OrderCreated",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "orderId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "string",
+				"name": "packerName",
+				"type": "string"
+			}
+		],
+		"name": "PackerAssigned",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "orderId",
+				"type": "uint256"
+			},
+			{
+				"indexed": false,
+				"internalType": "enum DeliveryOrderNFT.OrderStatus",
+				"name": "newStatus",
+				"type": "uint8"
+			}
+		],
+		"name": "StatusChanged",
+		"type": "event"
+	},
+	{
+		"inputs": [],
+		"name": "admin",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "orderId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "driverName",
+				"type": "string"
+			},
+			{
+				"internalType": "address",
+				"name": "driverAddr",
+				"type": "address"
+			}
+		],
+		"name": "assignDriver",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "orderId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "string",
+				"name": "packerName",
+				"type": "string"
+			}
+		],
+		"name": "assignPacker",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "orderId",
+				"type": "uint256"
+			}
+		],
+		"name": "getOrder",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "orderId",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "restaurant",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "currentHolder",
+						"type": "address"
+					},
+					{
+						"internalType": "string",
+						"name": "itemDescription",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "packerName",
+						"type": "string"
+					},
+					{
+						"internalType": "string",
+						"name": "driverName",
+						"type": "string"
+					},
+					{
+						"internalType": "uint256",
+						"name": "createdAt",
+						"type": "uint256"
+					},
+					{
+						"internalType": "enum DeliveryOrderNFT.OrderStatus",
+						"name": "status",
+						"type": "uint8"
+					}
+				],
+				"internalType": "struct DeliveryOrderNFT.Order",
+				"name": "",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "orderId",
+				"type": "uint256"
+			}
+		],
+		"name": "getOrderStatus",
+		"outputs": [
+			{
+				"internalType": "enum DeliveryOrderNFT.OrderStatus",
+				"name": "",
+				"type": "uint8"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "handoverManager",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "orderId",
+				"type": "uint256"
+			}
+		],
+		"name": "markDelivered",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "orderCount",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "orders",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "orderId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "restaurant",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "currentHolder",
+				"type": "address"
+			},
+			{
+				"internalType": "string",
+				"name": "itemDescription",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "packerName",
+				"type": "string"
+			},
+			{
+				"internalType": "string",
+				"name": "driverName",
+				"type": "string"
+			},
+			{
+				"internalType": "uint256",
+				"name": "createdAt",
+				"type": "uint256"
+			},
+			{
+				"internalType": "enum DeliveryOrderNFT.OrderStatus",
+				"name": "status",
+				"type": "uint8"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "string",
+				"name": "itemDescription",
+				"type": "string"
+			}
+		],
+		"name": "placeOrder",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "roleManager",
+		"outputs": [
+			{
+				"internalType": "contract RoleManager",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_handoverManager",
+				"type": "address"
+			}
+		],
+		"name": "setHandoverManager",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+];
+ 
+  const HandoverManagerABI = [
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "_roleManager",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "_deliveryOrderNFT",
+				"type": "address"
+			}
+		],
+		"stateMutability": "nonpayable",
+		"type": "constructor"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "orderId",
+				"type": "uint256"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "driver",
+				"type": "address"
+			}
+		],
+		"name": "HandedToDriver",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "orderId",
+				"type": "uint256"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "receiver",
+				"type": "address"
+			}
+		],
+		"name": "HandedToReceiver",
+		"type": "event"
+	},
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "uint256",
+				"name": "orderId",
+				"type": "uint256"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "packer",
+				"type": "address"
+			}
+		],
+		"name": "PackerAssigned",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "orderId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "packerAddr",
+				"type": "address"
+			}
+		],
+		"name": "assignPacker",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "assignedDriver",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "",
+				"type": "uint256"
+			}
+		],
+		"name": "assignedPacker",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "deliveryOrderNFT",
+		"outputs": [
+			{
+				"internalType": "contract DeliveryOrderNFT",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "orderId",
+				"type": "uint256"
+			}
+		],
+		"name": "getHandovers",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "sender",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "receiver",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "timestamp",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct HandoverManager.HandoverRecord[]",
+				"name": "",
+				"type": "tuple[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "orderId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "driverAddr",
+				"type": "address"
+			}
+		],
+		"name": "handoverToDriver",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "orderId",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "receiverAddr",
+				"type": "address"
+			}
+		],
+		"name": "handoverToReceiver",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "roleManager",
+		"outputs": [
+			{
+				"internalType": "contract RoleManager",
+				"name": "",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	}
+];
+ 
+  // Global variables
+  const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
   const STATUS_LABELS = ["PENDING", "IN_TRANSIT", "DELIVERED"];
-
-  // Helpers 
-  function setStatus(msg, type = "info") {
-    const bar = document.getElementById("statusBar");
-    bar.className = `alert alert-${type} py-2 mb-4`;
-    bar.textContent = msg;
+  let signer;
+  let RoleManagerContract;
+  let DeliveryOrderNFTContract;
+  let HandoverManagerContract;
+ 
+  // Updates the status bar message
+  function setStatus(msg) {
+    document.getElementById("statusBar").textContent = msg;
   }
-
-  function showOutput(html) {
-    document.getElementById("output").innerHTML = html;
+ 
+  // Connect MetaMask 
+  function connectWallet() {
+    provider.send("eth_requestAccounts", []).then(function() {
+      provider.listAccounts().then(function(accounts) {
+        signer = provider.getSigner(accounts[0]);
+        RoleManagerContract = new ethers.Contract(RoleManagerAddress, RoleManagerABI, signer);
+        DeliveryOrderNFTContract = new ethers.Contract(DeliveryOrderNFTAddress, DeliveryOrderNFTABI, signer);
+        HandoverManagerContract  = new ethers.Contract(HandoverManagerAddress,  HandoverManagerABI, signer);
+        document.getElementById("walletStatus").textContent = accounts[0].slice(0,6) + "..." + accounts[0].slice(-4) + " | sepolia";
+        setStatus("Connected: " + accounts[0]);
+      });
+    });
   }
-
-  function shortAddr(addr) {
-    return addr.slice(0, 6) + "..." + addr.slice(-4);
-  }
-
-  function formatStatus(code) {
-    const label = STATUS_LABELS[code] || "UNKNOWN";
-    return `<span class="status-${label}">${label}</span>`;
-  }
-
-  // Connect wallet
-  async function connectWallet() {
-    if (!window.ethereum) {
-      alert("MetaMask not detected. Please install it first.");
-      return;
-    }
-    try {
-      provider = new ethers.providers.Web3Provider(window.ethereum);
-      await provider.send("eth_requestAccounts", []);
-      signer = provider.getSigner();
-
-      const address = await signer.getAddress();
-      const network = await provider.getNetwork();
-
-      document.getElementById("walletStatus").textContent =
-        shortAddr(address) + " | " + network.name;
-      setStatus("Connected: " + address, "success");
-
-      roleManagerContract = new ethers.Contract(
-        ROLE_MANAGER_ADDRESS, ROLE_MANAGER_ABI, signer
-      );
-      deliveryOrderNFTContract = new ethers.Contract(
-        DELIVERY_ORDER_NFT_ADDRESS, DELIVERY_ORDER_NFT_ABI, signer
-      );
-      handoverManagerContract = new ethers.Contract(
-        HANDOVER_MANAGER_ADDRESS, HANDOVER_MANAGER_ABI, signer
-      );
-    } catch (err) {
-      setStatus("Connection failed: " + err.message, "danger");
-    }
-  }
-
-  // Auto-connect if already authorised
-  window.addEventListener("load", () => {
-    if (window.ethereum) connectWallet();
-  });
-
-  // Register stakeholder 
+ 
+  // Register a stakeholder (Admin)
   async function registerStakeholder() {
-    const address = document.getElementById("reg-address").value.trim();
-    const name    = document.getElementById("reg-name").value.trim();
-    const role    = parseInt(document.getElementById("reg-role").value);
-    if (!address || !name) { setStatus("Please fill in address and name.", "warning"); return; }
-    try {
-      setStatus("Sending transaction...", "info");
-      const tx = await roleManagerContract.registerStakeholder(address, role, name);
-      setStatus("Waiting for confirmation...", "info");
-      await tx.wait();
-      setStatus("Stakeholder registered: " + name, "success");
-    } catch (err) {
-      setStatus("Error: " + (err.reason || err.message), "danger");
-    }
+    const address = document.getElementById("reg-address").value;
+    const name = document.getElementById("reg-name").value;
+    const role = parseInt(document.getElementById("reg-role").value);
+    const registerStakeholderPromise = RoleManagerContract.registerStakeholder(address, role, name);
+    await registerStakeholderPromise;
+    setStatus("Stakeholder registered: " + name);
   }
-
-  // Place order 
+ 
+  // Place an order (Restaurant)
   async function placeOrder() {
-    const items = document.getElementById("order-items").value.trim();
-    if (!items) { setStatus("Please enter item description.", "warning"); return; }
-    try {
-      setStatus("Sending transaction...", "info");
-      const tx = await deliveryOrderNFTContract.placeOrder(items);
-      setStatus("Waiting for confirmation...", "info");
-      await tx.wait();
-      setStatus("Order placed successfully.", "success");
-    } catch (err) {
-      setStatus("Error: " + (err.reason || err.message), "danger");
-    }
+    const itemDescription = document.getElementById("order-items").value;
+    const placeOrderPromise = DeliveryOrderNFTContract.placeOrder(itemDescription);
+    await placeOrderPromise;
+    setStatus("Order placed successfully.");
   }
-
-  // Assign packer 
+ 
+  // Assign a packer to an order (Supervisor)
   async function assignPacker() {
     const orderId = document.getElementById("assign-orderid").value;
-    const packer  = document.getElementById("assign-packer").value.trim();
-    if (!orderId || !packer) { setStatus("Please fill in all fields.", "warning"); return; }
-    try {
-      setStatus("Sending transaction...", "info");
-      const tx = await handoverManagerContract.assignPacker(orderId, packer);
-      setStatus("Waiting for confirmation...", "info");
-      await tx.wait();
-      setStatus("Packer assigned for order #" + orderId, "success");
-    } catch (err) {
-      setStatus("Error: " + (err.reason || err.message), "danger");
-    }
+    const packerAddress = document.getElementById("assign-packer").value;
+    const assignPackerPromise = HandoverManagerContract.assignPacker(orderId, packerAddress);
+    await assignPackerPromise;
+    setStatus("Packer assigned for order #" + orderId);
   }
-
-  // Hand to driver 
+ 
+  // Hand the order to a driver (Packer)
   async function handoverToDriver() {
     const orderId = document.getElementById("driver-orderid").value;
-    const driver  = document.getElementById("driver-addr").value.trim();
-    if (!orderId || !driver) { setStatus("Please fill in all fields.", "warning"); return; }
-    try {
-      setStatus("Sending transaction...", "info");
-      const tx = await handoverManagerContract.handoverToDriver(orderId, driver);
-      setStatus("Waiting for confirmation...", "info");
-      await tx.wait();
-      setStatus("Order #" + orderId + " handed to driver.", "success");
-    } catch (err) {
-      setStatus("Error: " + (err.reason || err.message), "danger");
-    }
+    const driverAddress = document.getElementById("driver-addr").value;
+    const handoverToDriverPromise = HandoverManagerContract.handoverToDriver(orderId, driverAddress);
+    await handoverToDriverPromise;
+    setStatus("Order #" + orderId + " handed to driver.");
   }
-
-  // Deliver to receiver 
+ 
+  // Deliver the order to a receiver (Driver)
   async function handoverToReceiver() {
-    const orderId  = document.getElementById("receiver-orderid").value;
-    const receiver = document.getElementById("receiver-addr").value.trim();
-    if (!orderId || !receiver) { setStatus("Please fill in all fields.", "warning"); return; }
-    try {
-      setStatus("Sending transaction...", "info");
-      const tx = await handoverManagerContract.handoverToReceiver(orderId, receiver);
-      setStatus("Waiting for confirmation...", "info");
-      await tx.wait();
-      setStatus("Order #" + orderId + " marked as delivered.", "success");
-    } catch (err) {
-      setStatus("Error: " + (err.reason || err.message), "danger");
-    }
+    const orderId = document.getElementById("receiver-orderid").value;
+    const receiverAddress = document.getElementById("receiver-addr").value;
+    const handoverToReceiverPromise = HandoverManagerContract.handoverToReceiver(orderId, receiverAddress);
+    await handoverToReceiverPromise;
+    setStatus("Order #" + orderId + " marked as delivered.");
   }
-
-  // Get order details 
+ 
+  // Get order details (Anyone)
   async function getOrder() {
     const orderId = document.getElementById("view-orderid").value;
-    if (!orderId) { setStatus("Please enter an Order ID.", "warning"); return; }
-    try {
-      const o = await deliveryOrderNFTContract.getOrder(orderId);
-      const created = new Date(o.createdAt.toNumber() * 1000).toLocaleString();
-      showOutput(
-        `<span class="output-label">Order ID:</span> ${o.orderId}\n` +
-        `<span class="output-label">Status:</span> ${formatStatus(o.status)}\n` +
-        `<span class="output-label">Items:</span> ${o.itemDescription}\n` +
-        `<span class="output-label">Restaurant:</span> ${o.restaurant}\n` +
-        `<span class="output-label">Current Holder:</span> ${o.currentHolder}\n` +
-        `<span class="output-label">Packer:</span> ${o.packerName || "(not yet assigned)"}\n` +
-        `<span class="output-label">Driver:</span> ${o.driverName || "(not yet assigned)"}\n` +
-        `<span class="output-label">Created:</span> ${created}`
-      );
-      setStatus("Order #" + orderId + " loaded.", "success");
-    } catch (err) {
-      setStatus("Error: " + (err.reason || err.message), "danger");
-    }
+    const getOrderPromise = DeliveryOrderNFTContract.getOrder(orderId);
+    const order = await getOrderPromise;
+    const createdDate = new Date(order.createdAt.toNumber() * 1000).toLocaleString();
+    const statusLabel = STATUS_LABELS[order.status];
+    document.getElementById("output").innerHTML =
+      "Order ID: " + order.orderId + "\n" +
+      "Status: " + statusLabel + "\n" +
+      "Items: " + order.itemDescription + "\n" +
+      "Restaurant: " + order.restaurant + "\n" +
+      "Current Holder: " + order.currentHolder + "\n" +
+      "Packer: " + order.packerName + "\n" +
+      "Driver: " + order.driverName + "\n" +
+      "Created: " + createdDate;
+    setStatus("Order #" + orderId + " loaded.");
   }
-
-  // Get handover history 
+ 
+  // Get handover history (Anyone)
   async function getHandovers() {
     const orderId = document.getElementById("view-orderid").value;
-    if (!orderId) { setStatus("Please enter an Order ID.", "warning"); return; }
-    try {
-      const records = await handoverManagerContract.getHandovers(orderId);
-      if (records.length === 0) {
-        showOutput("No handovers recorded for order #" + orderId + " yet.");
-        return;
-      }
-      let html = `<span class="output-label">Handover History — Order #${orderId}</span>\n\n`;
-      records.forEach((r, i) => {
-        const ts = new Date(r.timestamp.toNumber() * 1000).toLocaleString();
-        html += `<span class="output-label">Step ${i + 1}:</span>\n`;
-        html += `  From: ${r.sender}\n`;
-        html += `  To:   ${r.receiver}\n`;
-        html += `  At:   ${ts}\n\n`;
-      });
-      showOutput(html);
-      setStatus("Handovers loaded for order #" + orderId, "success");
-    } catch (err) {
-      setStatus("Error: " + (err.reason || err.message), "danger");
+    const getHandoversPromise = HandoverManagerContract.getHandovers(orderId);
+    const records = await getHandoversPromise;
+    let output = "Handover History - Order #" + orderId + "\n\n";
+    for (let i = 0; i < records.length; i++) {
+      const record    = records[i];
+      const timestamp = new Date(record.timestamp.toNumber() * 1000).toLocaleString();
+      output += "Step " + (i + 1) + ":\n";
+      output += "  From: " + record.sender + "\n";
+      output += "  To:   " + record.receiver + "\n";
+      output += "  At:   " + timestamp + "\n\n";
     }
+    document.getElementById("output").textContent = output;
+    setStatus("Handovers loaded for order #" + orderId);
   }
+ 
 </script>
+ 
+  
 
-<!-- Bootstrap 5 JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
